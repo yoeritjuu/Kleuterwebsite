@@ -9,5 +9,12 @@ namespace KleuterWebsite.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public Command(int id, string Name)
+        {
+            this.Id = id; 
+            this.Name = Name;
+        }
+
     }
 }
