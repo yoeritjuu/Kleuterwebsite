@@ -10,28 +10,6 @@ namespace KleuterWebsite.Controllers
 {
     public class CommandsController : Controller
     {
-        public void SQLiteConn()
-        {
-            SQLiteConnection conn = new SQLiteConnection(@"Data Source=C:MySQLiteDB.s3db");
-            conn.Open();
-
-            SQLiteCommand cmd = new SQLiteCommand(conn);
-            cmd.CommandText = "select * from Customer";
-
-            SQLiteDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                // do something
-            }
-            reader.Close();
-
-            cmd.CommandText = "delete from Customer where CustomerID = 33";
-            cmd.ExecuteScalar();
-
-            conn.Close();
-        }
-
-
         // GET: Commands
         public ActionResult Index()
         {
