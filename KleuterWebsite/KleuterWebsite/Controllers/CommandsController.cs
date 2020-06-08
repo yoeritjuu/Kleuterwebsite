@@ -18,11 +18,12 @@ namespace KleuterWebsite.Controllers
 
         public ActionResult ListCommands()
         {
-            List<CommandModel> Commands = new List<CommandModel>();
-
-            Commands.Add(new CommandModel { Id = 1, Name = "8ball", Owner = 1, Usage = 2 });
-            Commands.Add(new CommandModel { Id = 2, Name = "ping", Owner = 0, Usage = 5 });
-            Commands.Add(new CommandModel { Id = 3, Name = "help", Owner = 0, Usage = 3 });
+            List<CommandModel> Commands = new List<CommandModel>
+            {
+                new CommandModel { Id = 1, Name = "8ball", Owner = 1, Usage = 2 },
+                new CommandModel { Id = 2, Name = "ping", Owner = 0, Usage = 5 },
+                new CommandModel { Id = 3, Name = "help", Owner = 0, Usage = 3 }
+            };
 
             return View(Commands);
         }
