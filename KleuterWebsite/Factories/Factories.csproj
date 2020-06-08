@@ -6,12 +6,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccessInterfaces\DataAccessInterfaces.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="MySql.Data">
-      <HintPath>..\..\MySql.Data.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\KleuterDataAccess\KleuterDataAccess.csproj" />
+    <ProjectReference Include="..\KleuterLogic\KleuterLogic.csproj" />
+    <ProjectReference Include="..\LogicInterfaces\LogicInterfaces.csproj" />
   </ItemGroup>
 
 </Project>

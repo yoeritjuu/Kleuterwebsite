@@ -4,7 +4,7 @@ namespace DataAccessInterfaces
 {
     public interface IExecuteQuerys
     {
-        void GetCommands();
-        void GetUsage();
+        string GetCommands();
+        string GetUsage();
     }
 }

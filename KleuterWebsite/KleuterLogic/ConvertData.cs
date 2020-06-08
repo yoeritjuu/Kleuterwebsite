@@ -5,7 +5,7 @@ using LogicInterfaces;
 
 namespace KleuterLogic
 {
-    class ConvertData : IConvertData
+    public class ConvertData : IConvertData
     {
     }
 }

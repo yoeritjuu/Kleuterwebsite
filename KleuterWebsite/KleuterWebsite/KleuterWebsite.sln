@@ -9,9 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleuterDataAccess", "..\Kle
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessInterfaces", "..\DataAccessInterfaces\DataAccessInterfaces.csproj", "{7E39EF61-DA82-4DDF-861D-C74268C93A47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KleuterLogic", "..\KleuterLogic\KleuterLogic.csproj", "{A64434EE-44E4-4B03-A6ED-B65A9A65DABA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KleuterLogic", "..\KleuterLogic\KleuterLogic.csproj", "{A64434EE-44E4-4B03-A6ED-B65A9A65DABA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicInterfaces", "..\LogicInterfaces\LogicInterfaces.csproj", "{9A407B56-947E-4206-843F-38B41D5B1D06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicInterfaces", "..\LogicInterfaces\LogicInterfaces.csproj", "{9A407B56-947E-4206-843F-38B41D5B1D06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factories", "..\Factories\Factories.csproj", "{37FA10AA-A9C0-4085-BC64-D86643AD2CC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KleuterTesting", "..\KleuterTesting\KleuterTesting.csproj", "{539ED531-B4A6-43A5-BA67-8316A789C577}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{9A407B56-947E-4206-843F-38B41D5B1D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A407B56-947E-4206-843F-38B41D5B1D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A407B56-947E-4206-843F-38B41D5B1D06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37FA10AA-A9C0-4085-BC64-D86643AD2CC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37FA10AA-A9C0-4085-BC64-D86643AD2CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37FA10AA-A9C0-4085-BC64-D86643AD2CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37FA10AA-A9C0-4085-BC64-D86643AD2CC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{539ED531-B4A6-43A5-BA67-8316A789C577}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{539ED531-B4A6-43A5-BA67-8316A789C577}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{539ED531-B4A6-43A5-BA67-8316A789C577}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{539ED531-B4A6-43A5-BA67-8316A789C577}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
