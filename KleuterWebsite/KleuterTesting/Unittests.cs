@@ -15,7 +15,7 @@ namespace KleuterTesting
 
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void name()
         {
             // Arrange
@@ -25,6 +25,6 @@ namespace KleuterTesting
             // Assert
            
 
-        }
+        }*/
     }
 }

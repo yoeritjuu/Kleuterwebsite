@@ -10,14 +10,12 @@ namespace Factories
 {
     public static class FactoryClass
     {
-        public static IExecuteQuerys GetExecuteQuery()
-        {
-            return new ExecuteQuerys();
-        }
-
+        //logica aanmaken
         public static IConvertData GetConvertData()
         {
-            return new ConvertData();
+            //maak hier de DAL aan en geef mee
+            IExecuteQuerys e = new ExecuteQuerys();
+            return new ConvertData(e);
         }
     }
 }

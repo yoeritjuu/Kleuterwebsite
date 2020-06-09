@@ -6,5 +6,6 @@ namespace LogicInterfaces
 {
     public interface IConvertData
     {
+        void PutInArray();
     }
 }

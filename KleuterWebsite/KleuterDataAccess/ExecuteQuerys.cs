@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
+using System.Net;
 using System.Text;
 using DataAccessInterfaces;
 using MySql.Data.MySqlClient;
@@ -12,7 +14,7 @@ namespace KleuterDataAccess
     {
         public string command;
         private string usage;
-        private readonly string connectionstring = "Server=studmysql01.fhict.local;Uid=dbi433553;Database=dbi433553;Pwd=yourPassword;";
+        private readonly string connectionstring = "Server=studmysql01.fhict.local;Uid=dbi433553;Database=dbi433553;Pwd=1qazxsw2;";
 
         /// <summary>
         /// Establishes connection to database.
@@ -20,9 +22,18 @@ namespace KleuterDataAccess
         /// <returns></returns>
         public MySqlConnection Sqlconnection()
         {
-            MySqlConnection connection = new MySqlConnection(connectionstring);
-            connection.Open();
-            return connection;
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(connectionstring);
+                connection.Open();
+                return connection;
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine(e);
+                return null;
+            }
+            
         }
 
         /// <summary>
@@ -32,16 +43,16 @@ namespace KleuterDataAccess
         {
             using (MySqlConnection conn = Sqlconnection())
             {
-                string sql = "SELECT * from commands";
+                string sql = "SELECT `id`, `name`, `usage` from commands";
                 using (MySqlCommand query = new MySqlCommand(sql, conn))
                 {
                     using (MySqlDataReader reader = query.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            command = $"{reader.GetInt32(0)} {reader.GetString(1)}  {reader.GetInt32(2)}";
+                            command = $"{reader.GetInt32(0)},{reader.GetString(1)},{reader.GetInt32(2)}";
+                            Trace.WriteLine(command);
                         }
-
                         return command;
                     }
                 }
@@ -52,7 +63,7 @@ namespace KleuterDataAccess
         {
             using (MySqlConnection conn = Sqlconnection())
             {
-                string sql = "SELECT * from command_usage";
+                string sql = "SELECT `command_id`, `user_id`, `amount_used` from command_usage";
                 using (MySqlCommand query = new MySqlCommand(sql, conn))
                 {
                     using (MySqlDataReader reader = query.ExecuteReader())
