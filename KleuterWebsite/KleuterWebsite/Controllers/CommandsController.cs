@@ -22,7 +22,7 @@ namespace KleuterWebsite.Controllers
         {
             IExecuteQuerys executeQuery = Factories.FactoryClass.GetExecuteQuery();
             string test = executeQuery.GetCommands();
-            string[] losseStrings = test.Split()
+           // string[] losseStrings = test.Split()
 
             List<CommandModel> Commands = new List<CommandModel>
             {
