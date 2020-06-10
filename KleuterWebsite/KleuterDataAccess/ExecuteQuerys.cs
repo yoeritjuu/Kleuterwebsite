@@ -33,7 +33,7 @@ namespace KleuterDataAccess
                 Trace.WriteLine(e);
                 return null;
             }
-            
+
         }
 
         /// <summary>
@@ -41,18 +41,18 @@ namespace KleuterDataAccess
         /// </summary>
         public string GetCommands()
         {
+            string sql = "SELECT `id`, `name`, `usage` from commands";
             using (MySqlConnection conn = Sqlconnection())
             {
-                string sql = "SELECT `id`, `name`, `usage` from commands";
                 using (MySqlCommand query = new MySqlCommand(sql, conn))
                 {
                     using (MySqlDataReader reader = query.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            command = $"{reader.GetInt32(0)},{reader.GetString(1)},{reader.GetInt32(2)}";
-                            Trace.WriteLine(command);
+                            command += $"{reader.GetInt32(0)},{reader.GetString(1)},{reader.GetInt32(2)};";
                         }
+                        Trace.WriteLine(command);
                         return command;
                     }
                 }

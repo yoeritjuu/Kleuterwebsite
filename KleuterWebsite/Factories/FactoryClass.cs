@@ -14,8 +14,8 @@ namespace Factories
         public static IConvertData GetConvertData()
         {
             //maak hier de DAL aan en geef mee
-            IExecuteQuerys e = new ExecuteQuerys();
-            return new ConvertData(e);
+            IExecuteQuerys dal = new ExecuteQuerys();
+            return new ConvertData(dal);
         }
     }
 }

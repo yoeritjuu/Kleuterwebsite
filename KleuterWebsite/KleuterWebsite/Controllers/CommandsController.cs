@@ -21,15 +21,14 @@ namespace KleuterWebsite.Controllers
 
         public ActionResult ListCommands()
         {
-            List<string> CommandList = FactoryClass.GetConvertData().PutInList();
+            List<List<string>> CommandList = FactoryClass.GetConvertData().PutInList();
 
-            List<CommandModel> Commands = new List<CommandModel>
+            List<CommandModel> Commands;
+
+            for (int i = 0; i < 3; i++)
             {
-                new CommandModel { Id = Convert.ToInt32(CommandList[0]), Name = CommandList[1], Usage = Convert.ToInt32(CommandList[2])},
-                new CommandModel { Id = 23, Name = "random", Usage = 55 },
-                new CommandModel { Id = 33, Name = "random", Usage = 33 },
-            };
-            
+                Commands = new CommandModel { Id = Convert.ToInt32(CommandList[0][0]), Name = CommandList[0][1], Usage = Convert.ToInt32(CommandList[0][2]) };
+            }
             return View(Commands);
         }
     }
