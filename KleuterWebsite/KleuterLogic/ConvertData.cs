@@ -10,22 +10,24 @@ namespace KleuterLogic
     public class ConvertData : IConvertData
     {
         private readonly IExecuteQuerys ExecuteQuerys;
+        private readonly List<string> command = new List<string>();
 
         public ConvertData(IExecuteQuerys executequerys)
         {
             ExecuteQuerys = executequerys;
         }
 
-        public void PutInArray()
+        public List<string> PutInList()
         {
             string info = ExecuteQuerys.GetCommands();
             string[] words = info.Split(',');
 
             foreach (var word in words)
             {
-                Trace.WriteLine(word);
+                command.Add(word);
             }
 
+            return command;
         }
 
     }
