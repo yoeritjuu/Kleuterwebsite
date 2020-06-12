@@ -39,8 +39,10 @@ namespace KleuterDataAccess
         /// <summary>
         /// Gets commands from db.
         /// </summary>
-        public string GetCommands()
+        public List<DtoCommand> GetCommands()
         {
+            List<DtoCommand> objList = new List<DtoCommand>();
+            DtoCommand dtoCommand = null;
             string sql = "SELECT `id`, `name`, `usage` from commands";
             using (MySqlConnection conn = Sqlconnection())
             {
@@ -50,10 +52,16 @@ namespace KleuterDataAccess
                     {
                         while (reader.Read())
                         {
-                            command += $"{reader.GetInt32(0)},{reader.GetString(1)},{reader.GetInt32(2)};";
+                            dtoCommand = new DtoCommand()
+                            {
+                                Id = reader.GetInt32(0),
+                                Name = reader.GetString(1),
+                                Usage = reader.GetInt32(2)
+                            };
+
+                            objList.Add(dtoCommand);
                         }
-                        Trace.WriteLine(command);
-                        return command;
+                        return objList;
                     }
                 }
             }

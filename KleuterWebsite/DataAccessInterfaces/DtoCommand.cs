@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataAccessInterfaces
 {
-    class DtoCommand
+    public class DtoCommand
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -11,11 +11,11 @@ namespace Factories
     public static class FactoryClass
     {
         //logica aanmaken
-        public static IConvertData GetConvertData()
+        public static ICommandProcess GetCommandProcess()
         {
             //maak hier de DAL aan en geef mee
             IExecuteQuerys dal = new ExecuteQuerys();
-            return new ConvertData(dal);
+            return new CommandProcess(dal);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace KleuterWebsite.Controllers
 {
     public class CommandsController : Controller
     {
+        private readonly ICommandProcess _commandProcess = FactoryClass.GetCommandProcess();
         // GET: Commands
         public ActionResult Index()
         {
@@ -21,15 +22,21 @@ namespace KleuterWebsite.Controllers
 
         public ActionResult ListCommands()
         {
-            //List<List<string>> CommandList = FactoryClass.GetConvertData().PutInList();
+            ViewBag.Message = "Command Info";
+            var data = _commandProcess.LoadCommands();
+            List<CommandModel> Commands = new List<CommandModel>();
 
-            List<CommandModel> Commands;
-
-            for (int i = 0; i < 3; i++)
+            foreach (var row in data)
             {
-                //Commands = new CommandModel { Id = Convert.ToInt32(CommandList[0][0]), Name = CommandList[0][1], Usage = Convert.ToInt32(CommandList[0][2]) };
+                Commands.Add(new CommandModel
+                {
+                    Id = row.Id,
+                    Name = row.Name,
+                    Usage = row.Usage
+                });
             }
-            return View();
+
+            return View(Commands);
         }
     }
 }

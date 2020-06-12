@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DataAccessInterfaces
 {
     public interface IExecuteQuerys
     {
-        string GetCommands();
+        List<DtoCommand> GetCommands();
         string GetUsage();
     }
 }
