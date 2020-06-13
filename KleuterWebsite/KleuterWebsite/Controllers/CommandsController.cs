@@ -32,7 +32,8 @@ namespace KleuterWebsite.Controllers
                 {
                     Id = row.Id,
                     Name = row.Name,
-                    Usage = row.Usage
+                    Usage = row.Usage,
+                    Description = row.Description
                 });
             }
 
