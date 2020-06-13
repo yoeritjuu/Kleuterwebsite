@@ -16,9 +16,9 @@
     <table class="table table-striped table-dark">
         <thead>
             <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Usage</th>
-            </tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Usage)</th>
+                <th>@Html.DisplayNameFor(model => model.Description)</tr>
         </thead>
 
         <tbody>
@@ -27,6 +27,7 @@
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.Name)</td>
                     <td>@Html.DisplayFor(modelItem => item.Usage)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.Id })
@@ -39,11 +40,12 @@
 
 <br />
 
-<h2>Toggle Switch</h2>
+<h2>Bot Status</h2>
 
-<div>
-    <label class="switch">
-        <input type="checkbox">
-        <span class="slider round"></span>
+<div class="card">
+    <label class="text-body">
+        <text>
+            The bot is currently: @ViewBag.Status
+        </text>
     </label>
 </div>

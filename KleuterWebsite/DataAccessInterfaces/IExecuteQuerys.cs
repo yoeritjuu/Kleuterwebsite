@@ -6,6 +6,7 @@ namespace DataAccessInterfaces
     public interface IExecuteQuerys
     {
         List<DtoCommand> GetCommands();
-        string GetUsage();
+        DtoStatus GetStatus();
+        //string GetUsage();
     }
 }

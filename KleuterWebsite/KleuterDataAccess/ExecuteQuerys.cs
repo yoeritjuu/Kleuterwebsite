@@ -12,9 +12,8 @@ namespace KleuterDataAccess
 {
     public class ExecuteQuerys : IExecuteQuerys
     {
-        public string command;
-        private string usage;
-        private readonly string connectionstring = "Server=studmysql01.fhict.local;Uid=dbi433553;Database=dbi433553;Pwd=1qazxsw2;";
+        private readonly string connectionstring =
+            "Server=studmysql01.fhict.local;Uid=dbi433553;Database=dbi433553;Pwd=1qazxsw2;";
 
         /// <summary>
         /// Establishes connection to database.
@@ -37,13 +36,13 @@ namespace KleuterDataAccess
         }
 
         /// <summary>
-        /// Gets commands from db.
+        /// Gets commands table from db.
         /// </summary>
         public List<DtoCommand> GetCommands()
         {
             List<DtoCommand> objList = new List<DtoCommand>();
             DtoCommand dtoCommand;
-            string sql = "SELECT `id`, `name`, `usage` from commands";
+            string sql = "SELECT `id`, `name`, `usage`, `description` from commands";
             using (MySqlConnection conn = Sqlconnection())
             {
                 using (MySqlCommand query = new MySqlCommand(sql, conn))
@@ -62,30 +61,55 @@ namespace KleuterDataAccess
 
                             objList.Add(dtoCommand);
                         }
+
                         return objList;
                     }
                 }
             }
         }
 
-        public string GetUsage()
+        public DtoStatus GetStatus()
         {
+            DtoStatus dtostatus = null;
+            string sql = "SELECT `status` from kleuterbot";
             using (MySqlConnection conn = Sqlconnection())
             {
-                string sql = "SELECT `command_id`, `user_id`, `amount_used` from command_usage";
-                using (MySqlCommand query = new MySqlCommand(sql, conn))
+                using (MySqlCommand command = new MySqlCommand(sql, conn))
                 {
-                    using (MySqlDataReader reader = query.ExecuteReader())
+                    using (MySqlDataReader reader = command.ExecuteReader())
                     {
-                        while (reader.Read())
+                        if (reader.Read())
                         {
-                            usage = reader.GetInt32(0) + reader.GetInt32(1) + reader.GetInt32(2).ToString();
+                            dtostatus = new DtoStatus()
+                            {
+                                Status = reader.GetString(0)
+                            };
                         }
-
-                        return usage;
+                        return dtostatus;
                     }
+
                 }
+
             }
         }
+        //public string GetUsage()
+        //{
+        //    using (MySqlConnection conn = Sqlconnection())
+        //    {
+        //        string sql = "SELECT `command_id`, `user_id`, `amount_used` from command_usage";
+        //        using (MySqlCommand query = new MySqlCommand(sql, conn))
+        //        {
+        //            using (MySqlDataReader reader = query.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+
+        //                }
+
+        //                return null;
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

@@ -4,6 +4,7 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using DataAccessInterfaces;
 using Factories;
 using KleuterWebsite.Models;
@@ -22,13 +23,18 @@ namespace KleuterWebsite.Controllers
 
         public ActionResult ListCommands()
         {
-            ViewBag.Message = "Command Info";
+            List<CommandModel> commands = new List<CommandModel>();
             var data = _commandProcess.LoadCommands();
-            List<CommandModel> Commands = new List<CommandModel>();
+            DtoStatus dtoStatus = _commandProcess.GetStatus();
+            StatusModel statusObject = new StatusModel()
+            {
+                Status = dtoStatus.Status
+            };
+            ViewBag.Status = statusObject.Status;
 
             foreach (var row in data)
             {
-                Commands.Add(new CommandModel
+                commands.Add(new CommandModel
                 {
                     Id = row.Id,
                     Name = row.Name,
@@ -37,7 +43,7 @@ namespace KleuterWebsite.Controllers
                 });
             }
 
-            return View(Commands);
+            return View(commands);
         }
     }
 }

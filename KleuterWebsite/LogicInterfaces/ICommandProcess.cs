@@ -8,5 +8,6 @@ namespace LogicInterfaces
     public interface ICommandProcess
     { 
         List<DtoCommand> LoadCommands();
+        DtoStatus GetStatus();
     }
 }

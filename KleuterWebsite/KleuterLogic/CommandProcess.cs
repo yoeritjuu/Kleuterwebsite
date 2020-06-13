@@ -23,5 +23,11 @@ namespace KleuterLogic
             List<DtoCommand> commandlist = ExecuteQuerys.GetCommands();
             return commandlist;
         }
+
+        public DtoStatus GetStatus()
+        {
+            DtoStatus status = ExecuteQuerys.GetStatus();
+            return status;
+        }
     }
 }
