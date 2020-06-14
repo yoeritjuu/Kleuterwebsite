@@ -92,24 +92,25 @@ namespace KleuterDataAccess
 
             }
         }
-        //public string GetUsage()
-        //{
-        //    using (MySqlConnection conn = Sqlconnection())
-        //    {
-        //        string sql = "SELECT `command_id`, `user_id`, `amount_used` from command_usage";
-        //        using (MySqlCommand query = new MySqlCommand(sql, conn))
-        //        {
-        //            using (MySqlDataReader reader = query.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
 
-        //                }
+        public string GetUsage()
+        {
+            using (MySqlConnection conn = Sqlconnection())
+            {
+                string sql = "SELECT `command_id`, `user_id`, `amount_used` FROM command_usage";
+                using (MySqlCommand command = new MySqlCommand(sql, conn))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
 
-        //                return null;
-        //            }
-        //        }
-        //    }
-        //}
+                        }
+
+                        return null;
+                    }
+                }
+            }
+        }
     }
 }

@@ -15,11 +15,6 @@ namespace KleuterWebsite.Controllers
     public class CommandsController : Controller
     {
         private readonly ICommandProcess _commandProcess = FactoryClass.GetCommandProcess();
-        // GET: Commands
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public ActionResult ListCommands()
         {
@@ -44,6 +39,20 @@ namespace KleuterWebsite.Controllers
             }
 
             return View(commands);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            if (id == null) return (HttpNotFound());
+            var cmd = _commandProcess.LoadCommands().Where(s => s.Id == id);
+            var command = new CommandModel()
+            {
+                Id = id,
+                Description = 
+
+            };
+            return View(command);
         }
     }
 }
