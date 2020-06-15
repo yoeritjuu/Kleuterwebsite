@@ -9,11 +9,11 @@ using LogicInterfaces;
 
 namespace KleuterLogic
 {
-    public class CommandProcess : ICommandProcess
+    public class CommandCollection : ICommandCollection
     {
         private readonly IExecuteQuerys ExecuteQuerys;
 
-        public CommandProcess(IExecuteQuerys executequerys)
+        public CommandCollection(IExecuteQuerys executequerys)
         {
             ExecuteQuerys = executequerys;
         }

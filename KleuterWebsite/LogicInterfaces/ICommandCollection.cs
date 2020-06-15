@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LogicInterfaces
 {
-    public interface ICommandProcess
+    public interface ICommandCollection
     { 
         List<DtoCommand> LoadCommands();
         DtoStatus GetStatus();

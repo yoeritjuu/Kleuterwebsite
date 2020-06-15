@@ -14,13 +14,13 @@ namespace KleuterWebsite.Controllers
 {
     public class CommandsController : Controller
     {
-        private readonly ICommandProcess _commandProcess = FactoryClass.GetCommandProcess();
+        private readonly ICommandCollection _commandCollection = FactoryClass.GetCommandProcess();
 
-        public ActionResult ListCommands()
+        public ActionResult Commands()
         {
             List<CommandModel> commands = new List<CommandModel>();
-            var data = _commandProcess.LoadCommands();
-            DtoStatus dtoStatus = _commandProcess.GetStatus();
+            var data = _commandCollection.LoadCommands();
+            DtoStatus dtoStatus = _commandCollection.GetStatus();
             StatusModel statusObject = new StatusModel()
             {
                 Status = dtoStatus.Status
@@ -42,17 +42,23 @@ namespace KleuterWebsite.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
             if (id == null) return (HttpNotFound());
-            var cmd = _commandProcess.LoadCommands().Where(s => s.Id == id);
-            var command = new CommandModel()
+            List<CommandModel> commands = new List<CommandModel>();
+            var cmd = _commandCollection.LoadCommands().Where(s => s.Id == id);
+            foreach (var row in cmd)
             {
-                Id = id,
-                Description = 
+                commands.Add(new CommandModel
+                {
+                    Id = row.Id,
+                    Name = row.Name,
+                    Usage = row.Usage,
+                    Description = row.Description
+                });
+            }
 
-            };
-            return View(command);
+            return View(commands[0]);
         }
     }
 }
