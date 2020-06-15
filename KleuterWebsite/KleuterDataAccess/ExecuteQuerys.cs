@@ -93,11 +93,28 @@ namespace KleuterDataAccess
             }
         }
 
-        
-        
+        public void UpdateCommand(DtoCommand dtocommand)
+        {
+            string sql = 
+                "UPDATE `commands` " +
+                "SET `name`= @name,`usage`= @usage,`description`= @description " +
+                "WHERE `id` = @id";
+            using (MySqlConnection conn = Sqlconnection())
+            {
+                using (MySqlCommand command = new MySqlCommand(sql, conn))
+                {
+                    command.Parameters.AddWithValue("@id", dtocommand.Id);
+                    command.Parameters.AddWithValue("@name", dtocommand.Name);
+                    command.Parameters.AddWithValue("@usage", dtocommand.Usage);
+                    command.Parameters.AddWithValue("@description", dtocommand.Description);
 
-        
-        
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
         //public string GetUsage()
         //{
         //    using (MySqlConnection conn = Sqlconnection())

@@ -11,22 +11,32 @@ namespace KleuterLogic
 {
     public class CommandCollection : ICommandCollection
     {
-        private readonly IExecuteQuerys ExecuteQuerys;
+        private readonly IExecuteQuerys _executeQuerys;
 
         public CommandCollection(IExecuteQuerys executequerys)
         {
-            ExecuteQuerys = executequerys;
+            _executeQuerys = executequerys;
         }
 
-        public List<DtoCommand> LoadCommands()
+        public List<DtoCommand> GetCommands()
         {
-            List<DtoCommand> commandlist = ExecuteQuerys.GetCommands();
+            List<DtoCommand> commandlist = _executeQuerys.GetCommands();
             return commandlist;
+        }
+
+        public DtoCommand AddCommand()
+        {
+            return null;
+        }
+
+        public DtoCommand DeleteCommand()
+        {
+            return null;
         }
 
         public DtoStatus GetStatus()
         {
-            DtoStatus status = ExecuteQuerys.GetStatus();
+            DtoStatus status = _executeQuerys.GetStatus();
             return status;
         }
     }

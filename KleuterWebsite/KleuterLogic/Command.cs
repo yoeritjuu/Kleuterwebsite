@@ -6,16 +6,35 @@ using DataAccessInterfaces;
 
 namespace KleuterLogic
 {
-    class Command : LogicInterfaces.ICommand
+    public class Command : LogicInterfaces.ICommand
     {
+        private readonly IExecuteQuerys _executeQuerys;
+
+        public Command(IExecuteQuerys executequerys)
+        {
+            _executeQuerys = executequerys;
+        }
+
         public int Id { get; set; }
+
         public string Name { get; set; }
+
         public int Usage { get; set; }
+
         public string Description { get; set; }
 
-        public DtoCommand UpdateCommand()
+
+        public void UpdateCommand(int id, string name, string description, int usage)
         {
-            
+            DtoCommand command = new DtoCommand()
+            {
+                Id = id,
+                Name = name,
+                Description = description,
+                Usage = usage
+            };
+            _executeQuerys.UpdateCommand(command);
         }
+
     }
 }

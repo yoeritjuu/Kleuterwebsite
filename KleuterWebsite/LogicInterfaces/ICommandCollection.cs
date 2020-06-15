@@ -7,7 +7,10 @@ namespace LogicInterfaces
 {
     public interface ICommandCollection
     { 
-        List<DtoCommand> LoadCommands();
+        List<DtoCommand> GetCommands();
+        DtoCommand AddCommand();
+        DtoCommand DeleteCommand();
         DtoStatus GetStatus();
+
     }
 }

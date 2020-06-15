@@ -17,5 +17,11 @@ namespace Factories
             IExecuteQuerys dal = new ExecuteQuerys();
             return new CommandCollection(dal);
         }
+
+        public static ICommand GetCommand()
+        {
+            IExecuteQuerys dal = new ExecuteQuerys();
+            return new Command(dal);
+        }
     }
 }

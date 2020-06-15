@@ -11,7 +11,7 @@ namespace LogicInterfaces
         string Name { get; set; }
         int Usage { get; set; }
         string Description { get; set; }
-        DtoCommand UpdateCommand();
+        void UpdateCommand(int id, string name, string description, int usage);
 
     }
 }
