@@ -8,32 +8,37 @@ namespace KleuterLogic
 {
     public class Command : LogicInterfaces.ICommand
     {
-        private readonly IExecuteQuerys _executeQuerys;
+        private readonly IDALClass _dalClass;
 
-        public Command(IExecuteQuerys executequerys)
+        public Command(IDALClass dalClass, int id, string name, int usage, string description)
         {
-            _executeQuerys = executequerys;
+            _dalClass = dalClass;
+            this.Id = id;
+            this.Name = name;
+            this.Usage = usage;
+            this.Description = description;
         }
 
-        public int Id { get; set; }
+        private int Id { get; }
 
-        public string Name { get; set; }
+        private string Name { get; }
 
-        public int Usage { get; set; }
+        private int Usage { get; }
 
-        public string Description { get; set; }
+        private string Description { get; }
 
-
-        public void UpdateCommand(int id, string name, string description, int usage)
+        // scherm props af en set ze in de constructor. zorg dat je begrijpt waarom je iets doet.
+        // zorg dat alles een reden heeft en je t kan uitleggen.
+        public void UpdateCommand()
         {
             DtoCommand command = new DtoCommand()
             {
-                Id = id,
-                Name = name,
-                Description = description,
-                Usage = usage
+                Id = this.Id,
+                Name = this.Name,
+                Description = this.Description,
+                Usage = this.Usage
             };
-            _executeQuerys.UpdateCommand(command);
+            _dalClass.UpdateCommand(command);
         }
 
     }

@@ -11,17 +11,17 @@ namespace Factories
     public static class FactoryClass
     {
         //logica aanmaken
-        public static ICommandCollection GetCommandProcess()
+        public static ICommandCollection GetCommandCollection()
         {
             //maak hier de DAL aan en geef mee
-            IExecuteQuerys dal = new ExecuteQuerys();
+            IDALClass dal = new DALClass();
             return new CommandCollection(dal);
         }
 
-        public static ICommand GetCommand()
+        public static ICommand GetCommand(int id, string name, int usage, string description)
         {
-            IExecuteQuerys dal = new ExecuteQuerys();
-            return new Command(dal);
+            IDALClass dal = new DALClass();
+            return new Command(dal, id, name, usage, description);
         }
     }
 }

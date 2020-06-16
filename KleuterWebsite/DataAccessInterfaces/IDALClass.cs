@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DataAccessInterfaces
 {
-    public interface IExecuteQuerys
+    public interface IDALClass
     {
         List<DtoCommand> GetCommands();
         DtoStatus GetStatus();

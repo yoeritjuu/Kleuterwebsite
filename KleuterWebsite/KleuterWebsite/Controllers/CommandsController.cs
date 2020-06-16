@@ -14,8 +14,7 @@ namespace KleuterWebsite.Controllers
 {
     public class CommandsController : Controller
     {
-        private readonly ICommandCollection _commandCollection = FactoryClass.GetCommandProcess();
-        private readonly ICommand _command = FactoryClass.GetCommand();
+        private readonly ICommandCollection _commandCollection = FactoryClass.GetCommandCollection();
 
         public ActionResult Commands()
         {
@@ -63,14 +62,11 @@ namespace KleuterWebsite.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(CommandModel command)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(CommandModel cModel)
         {
-            var id = command.Id;
-            var name = command.Name;
-            var description = command.Description;
-            var usage = command.Usage;
-
-            _command.UpdateCommand(id, name, description, usage);
+            ICommand command = FactoryClass.GetCommand(cModel.Id, cModel.Name, cModel.Usage, cModel.Description);
+            command.UpdateCommand();
 
             return RedirectToAction("Commands");
         }

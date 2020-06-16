@@ -10,7 +10,7 @@ using MySql.Data.MySqlClient;
 
 namespace KleuterDataAccess
 {
-    public class ExecuteQuerys : IExecuteQuerys
+    public class DALClass : IDALClass
     {
         private readonly string connectionstring =
             "Server=studmysql01.fhict.local;Uid=dbi433553;Database=dbi433553;Pwd=1qazxsw2;";

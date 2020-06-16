@@ -8,15 +8,14 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
+<h4>Change details</h4>
+@using (Html.BeginForm("Edit", "Commands", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    @Html.AntiForgeryToken()
-    
     <div class="form-horizontal">
-        <h4>Change details</h4>
+        @Html.AntiForgeryToken()
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id )
+        @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })

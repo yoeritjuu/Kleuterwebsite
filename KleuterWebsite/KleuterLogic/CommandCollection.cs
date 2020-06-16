@@ -11,9 +11,9 @@ namespace KleuterLogic
 {
     public class CommandCollection : ICommandCollection
     {
-        private readonly IExecuteQuerys _executeQuerys;
+        private readonly IDALClass _executeQuerys;
 
-        public CommandCollection(IExecuteQuerys executequerys)
+        public CommandCollection(IDALClass executequerys)
         {
             _executeQuerys = executequerys;
         }
