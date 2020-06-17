@@ -8,4 +8,10 @@
     <ProjectReference Include="..\DataAccessInterfaces\DataAccessInterfaces.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="KleuterLogic">
+      <HintPath>..\KleuterWebsite\Bin\KleuterLogic.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

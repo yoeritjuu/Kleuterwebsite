@@ -95,7 +95,7 @@ namespace KleuterDataAccess
 
         public void UpdateCommand(DtoCommand dtocommand)
         {
-            string sql = 
+            string sql =
                 "UPDATE `commands` " +
                 "SET `name`= @name,`usage`= @usage,`description`= @description " +
                 "WHERE `id` = @id";
@@ -113,26 +113,40 @@ namespace KleuterDataAccess
             }
         }
 
+        /// <summary>
+        /// executes an 'insert into' query on to database
+        /// </summary>
+        /// <param name="dtocommand"></param>
+        public void AddCommand(DtoCommand dtocommand)
+        {
+            string sql = "INSERT INTO `commands` (`name`, `usage`, `description`) " +
+                         "VALUES (@name, @usage, @description)";
+            using (MySqlConnection conn = Sqlconnection())
+            {
+                using (MySqlCommand command = new MySqlCommand(sql, conn))
+                {
+                    command.Parameters.AddWithValue("@name", dtocommand.Name);
+                    command.Parameters.AddWithValue("@usage", dtocommand.Usage);
+                    command.Parameters.AddWithValue("@description", dtocommand.Description);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
-
-        //public string GetUsage()
-        //{
-        //    using (MySqlConnection conn = Sqlconnection())
-        //    {
-        //        string sql = "SELECT `command_id`, `user_id`, `amount_used` FROM command_usage";
-        //        using (MySqlCommand command = new MySqlCommand(sql, conn))
-        //        {
-        //            using (MySqlDataReader reader = command.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
-
-        //                }
-
-        //                return null;
-        //            }
-        //        }
-        //    }
-        //}
+        /// <summary>
+        /// executes a 'insert into' query on to database
+        /// </summary>
+        public void DeleteCommand(int id)
+        {
+            string sql = "DELETE FROM `commands` WHERE `commands`.`id` = @Id";
+            using (MySqlConnection conn = Sqlconnection())
+            {
+                using (MySqlCommand command = new MySqlCommand(sql, conn))
+                {
+                    command.Parameters.AddWithValue("@Id", id);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

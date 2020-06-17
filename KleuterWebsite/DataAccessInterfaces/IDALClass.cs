@@ -9,6 +9,7 @@ namespace DataAccessInterfaces
         DtoStatus GetStatus();
 
         void UpdateCommand(DtoCommand dtocommand);
-        //string GetUsage();
+        void AddCommand(DtoCommand dtocommand);
+        void DeleteCommand(int id);
     }
 }

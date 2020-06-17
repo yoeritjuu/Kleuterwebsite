@@ -10,36 +10,19 @@ namespace KleuterLogic
     {
         private readonly IDALClass _dalClass;
 
-        public Command(IDALClass dalClass, int id, string name, int usage, string description)
+        public Command(IDALClass dalClass)
         {
             _dalClass = dalClass;
-            this.Id = id;
-            this.Name = name;
-            this.Usage = usage;
-            this.Description = description;
         }
 
-        private int Id { get; }
+        public int Id { get; set; }
 
-        private string Name { get; }
+        public string Name { get; set; }
 
-        private int Usage { get; }
+        public int Usage { get; set; }
 
-        private string Description { get; }
+        public string Description { get; set; }
 
-        // scherm props af en set ze in de constructor. zorg dat je begrijpt waarom je iets doet.
-        // zorg dat alles een reden heeft en je t kan uitleggen.
-        public void UpdateCommand()
-        {
-            DtoCommand command = new DtoCommand()
-            {
-                Id = this.Id,
-                Name = this.Name,
-                Description = this.Description,
-                Usage = this.Usage
-            };
-            _dalClass.UpdateCommand(command);
-        }
-
+        
     }
 }

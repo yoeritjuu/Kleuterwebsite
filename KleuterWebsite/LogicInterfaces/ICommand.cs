@@ -7,7 +7,9 @@ namespace LogicInterfaces
 {
     public interface ICommand
     {
-        void UpdateCommand();
-
+        int Id { get; set; }
+        string Name { get; set; }
+        int Usage { get; set; }
+        string Description { get; set; }
     }
 }

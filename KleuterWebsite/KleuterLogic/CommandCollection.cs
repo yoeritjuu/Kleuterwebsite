@@ -11,32 +11,51 @@ namespace KleuterLogic
 {
     public class CommandCollection : ICommandCollection
     {
-        private readonly IDALClass _executeQuerys;
+        private readonly IDALClass _dalClass;
 
         public CommandCollection(IDALClass executequerys)
         {
-            _executeQuerys = executequerys;
+            _dalClass = executequerys;
         }
 
         public List<DtoCommand> GetCommands()
         {
-            List<DtoCommand> commandlist = _executeQuerys.GetCommands();
+            List<DtoCommand> commandlist = _dalClass.GetCommands();
             return commandlist;
         }
 
-        public DtoCommand AddCommand()
+        public void Update(ICommand model)
         {
-            return null;
+            DtoCommand DALobj = new DtoCommand()
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Description = model.Description,
+                Usage = model.Usage
+            };
+            _dalClass.UpdateCommand(DALobj);
         }
 
-        public DtoCommand DeleteCommand()
+        public void AddCommand(ICommand model)
         {
-            return null;
+            DtoCommand DALobj = new DtoCommand()
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Description = model.Description,
+                Usage = model.Usage
+            };
+            _dalClass.AddCommand(DALobj);
+        }
+
+        public void DeleteCommand(int id)
+        {
+            _dalClass.DeleteCommand(id);
         }
 
         public DtoStatus GetStatus()
         {
-            DtoStatus status = _executeQuerys.GetStatus();
+            DtoStatus status = _dalClass.GetStatus();
             return status;
         }
     }
