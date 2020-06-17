@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using AutoMapper;
 using DataAccessInterfaces;
 using Factories;
 using KleuterWebsite.Models;
 using LogicInterfaces;
-using Microsoft.AspNetCore.Mvc;
 
 namespace KleuterWebsite.Controllers
 {
