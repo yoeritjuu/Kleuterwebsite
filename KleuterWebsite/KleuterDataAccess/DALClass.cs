@@ -27,12 +27,11 @@ namespace KleuterDataAccess
                 connection.Open();
                 return connection;
             }
-            catch (Exception e)
+            catch (MySqlException e)
             {
-                Trace.WriteLine(e);
-                return null;
+                Console.WriteLine(e);
+                throw new ApplicationException("connection failed");
             }
-
         }
 
         /// <summary>
@@ -45,25 +44,33 @@ namespace KleuterDataAccess
             string sql = "SELECT `id`, `name`, `usage`, `description` from commands";
             using (MySqlConnection conn = Sqlconnection())
             {
-                using (MySqlCommand query = new MySqlCommand(sql, conn))
+                try
                 {
-                    using (MySqlDataReader reader = query.ExecuteReader())
+                    using (MySqlCommand query = new MySqlCommand(sql, conn))
                     {
-                        while (reader.Read())
+                        using (MySqlDataReader reader = query.ExecuteReader())
                         {
-                            dtoCommand = new DtoCommand()
+                            while (reader.Read())
                             {
-                                Id = reader.GetInt32(0),
-                                Name = reader.GetString(1),
-                                Usage = reader.GetInt32(2),
-                                Description = reader.GetString(3)
-                            };
+                                dtoCommand = new DtoCommand()
+                                {
+                                    Id = reader.GetInt32(0),
+                                    Name = reader.GetString(1),
+                                    Usage = reader.GetInt32(2),
+                                    Description = reader.GetString(3)
+                                };
 
-                            objList.Add(dtoCommand);
+                                objList.Add(dtoCommand);
+                            }
+
+                            return objList;
                         }
-
-                        return objList;
                     }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw new Exception(e.Message);
                 }
             }
         }
@@ -72,24 +79,31 @@ namespace KleuterDataAccess
         {
             DtoStatus dtostatus = null;
             string sql = "SELECT `status` from kleuterbot";
-            using (MySqlConnection conn = Sqlconnection())
+            try
             {
-                using (MySqlCommand command = new MySqlCommand(sql, conn))
+                using (MySqlConnection conn = Sqlconnection())
                 {
-                    using (MySqlDataReader reader = command.ExecuteReader())
+                    using (MySqlCommand command = new MySqlCommand(sql, conn))
                     {
-                        if (reader.Read())
+                        using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            dtostatus = new DtoStatus()
+                            if (reader.Read())
                             {
-                                Status = reader.GetString(0)
-                            };
+                                dtostatus = new DtoStatus()
+                                {
+                                    Status = reader.GetString(0)
+                                };
+                            }
+                            return dtostatus;
                         }
-                        return dtostatus;
+
                     }
-
                 }
-
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw new Exception(e.Message);
             }
         }
 
@@ -101,14 +115,22 @@ namespace KleuterDataAccess
                 "WHERE `id` = @id";
             using (MySqlConnection conn = Sqlconnection())
             {
-                using (MySqlCommand command = new MySqlCommand(sql, conn))
+                try
                 {
-                    command.Parameters.AddWithValue("@id", dtocommand.Id);
-                    command.Parameters.AddWithValue("@name", dtocommand.Name);
-                    command.Parameters.AddWithValue("@usage", dtocommand.Usage);
-                    command.Parameters.AddWithValue("@description", dtocommand.Description);
+                    using (MySqlCommand command = new MySqlCommand(sql, conn))
+                    {
+                        command.Parameters.AddWithValue("@id", dtocommand.Id);
+                        command.Parameters.AddWithValue("@name", dtocommand.Name);
+                        command.Parameters.AddWithValue("@usage", dtocommand.Usage);
+                        command.Parameters.AddWithValue("@description", dtocommand.Description);
 
-                    command.ExecuteNonQuery();
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw new Exception(e.Message);
                 }
             }
         }
@@ -123,12 +145,20 @@ namespace KleuterDataAccess
                          "VALUES (@name, @usage, @description)";
             using (MySqlConnection conn = Sqlconnection())
             {
-                using (MySqlCommand command = new MySqlCommand(sql, conn))
+                try
                 {
-                    command.Parameters.AddWithValue("@name", dtocommand.Name);
-                    command.Parameters.AddWithValue("@usage", dtocommand.Usage);
-                    command.Parameters.AddWithValue("@description", dtocommand.Description);
-                    command.ExecuteNonQuery();
+                    using (MySqlCommand command = new MySqlCommand(sql, conn))
+                    {
+                        command.Parameters.AddWithValue("@name", dtocommand.Name);
+                        command.Parameters.AddWithValue("@usage", dtocommand.Usage);
+                        command.Parameters.AddWithValue("@description", dtocommand.Description);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw new Exception(e.Message);
                 }
             }
         }
@@ -141,10 +171,18 @@ namespace KleuterDataAccess
             string sql = "DELETE FROM `commands` WHERE `commands`.`id` = @Id";
             using (MySqlConnection conn = Sqlconnection())
             {
-                using (MySqlCommand command = new MySqlCommand(sql, conn))
+                try
                 {
-                    command.Parameters.AddWithValue("@Id", id);
-                    command.ExecuteNonQuery();
+                    using (MySqlCommand command = new MySqlCommand(sql, conn))
+                    {
+                        command.Parameters.AddWithValue("@Id", id);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw new Exception(e.Message);
                 }
             }
         }
